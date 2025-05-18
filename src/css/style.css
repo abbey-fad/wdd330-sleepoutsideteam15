@@ -241,6 +241,27 @@ button {
   grid-column: 3;
 }
 
+.cart-footer {
+  display: flex;
+  justify-content: flex-end;
+  /* aligns total text to the right */
+  padding: 1rem 2rem;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* If you want to hide/show the footer dynamically */
+.cart-footer.hide {
+  display: none;
+}
+
+.cart-total {
+  margin: 0;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

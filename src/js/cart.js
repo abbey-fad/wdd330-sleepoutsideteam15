@@ -4,6 +4,9 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // Update cart total AFTER rendering
+  updateCartTotal(cartItems);
 }
 
 function cartItemTemplate(item) {
@@ -21,8 +24,22 @@ function cartItemTemplate(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-
   return newItem;
 }
 
+// Define cart total functionality
+const cartFooter = document.querySelector(".cart-footer");
+const cartTotalEl = document.querySelector(".cart-total");
+
+function updateCartTotal(cartItems) {
+  if (cartItems.length > 0) {
+    const total = cartItems.reduce((sum, item) => sum + Number(item.FinalPrice), 0);
+    cartTotalEl.textContent = `Total: $${total.toFixed(2)}`;
+    cartFooter.classList.remove("hide");
+  } else {
+    cartFooter.classList.add("hide");
+  }
+}
+
+// Start rendering the cart and updating total
 renderCartContents();
