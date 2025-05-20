@@ -18,20 +18,21 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
-    this.products = [];
   }
 
   async init() {
     this.products = await this.dataSource.getData();
-    console.log(`Products for category "${this.category}":`, this.products);
-  
-    // Check the brand names here
-    console.log(this.products.map(p => p.Brand));
   
     this.renderList();
   }
+  //renderList(list) {
+    // const htmlStrings = list.map(productCardTemplate);
+    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
 
-  renderList() {
+    // apply use new utility function instead of the commented code above
+    //renderListWithTemplate(productCardTemplate, this.listElement, list);
+
+  renderList(list) {
     const limitedProducts = this.products.slice(0, 4); // only take the first 4
     console.log('Rendering products:', limitedProducts);
     renderListWithTemplate(productCardTemplate, this.listElement, limitedProducts, "afterbegin", true);
