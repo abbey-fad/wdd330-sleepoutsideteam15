@@ -331,3 +331,24 @@ footer {
 .cart-total {
   margin: 0;
 }
+
+/* Remove Button Style */
+.remove-btn {
+  color: #ff4d4d;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.hide {
+  display: none;
+}
+
+.remove-btn:hover {
+  color: #cc0000;
+  transform: scale(1.2);
+}
