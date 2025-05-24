@@ -30,10 +30,8 @@ export function getParam(param) {
   return product
 }
 
-// ✅ Improved version of renderListWithTemplate with defaults and clear option
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
-  const htmlStrings = list.map(templateFn); // <-- this is the fix
-
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(template);
   // if clear is true we need to clear out the contents of the parent.
   if (clear) {
     parentElement.innerHTML = "";
@@ -41,15 +39,13 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
-// ✅ render a single HTML template into an element
-export function renderWithTemplate(template, parentElement, data = null, callback = null) {
+export function renderWithTemplate(template, parentElement, data, callback) {
   parentElement.innerHTML = template;
   if (callback) {
     callback(data);
   }
 }
 
-// ✅ fetch an HTML file and return its content as a string
 async function loadTemplate(path) {
   const res = await fetch(path);
   const template = await res.text();
@@ -57,8 +53,8 @@ async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("/partials/header.html");
-  const footerTemplate = await loadTemplate("/partials/footer.html");
+  const headerTemplate = await loadTemplate("../partials/header.html");
+  const footerTemplate = await loadTemplate("../partials/footer.html");
 
   const headerElement = document.querySelector("#main-header");
   const footerElement = document.querySelector("#main-footer");
