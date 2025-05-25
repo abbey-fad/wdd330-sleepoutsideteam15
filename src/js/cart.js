@@ -87,7 +87,7 @@ function removeFromCart(productId) {
   }
 }
 
-// Attach remove button listeners
+// Attach remove button listener
 function attachRemoveListeners() {
   const removeButtons = document.querySelectorAll(".remove-btn");
   removeButtons.forEach(btn => {
