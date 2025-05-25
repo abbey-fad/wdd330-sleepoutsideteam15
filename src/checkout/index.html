@@ -10,6 +10,7 @@
   <title>Sleep Outside | Checkout</title>
 
   <link rel="stylesheet" href="css/style.css" />
+  <script src="../js/checkout.js" type="module"></script>
 </head>
 
 <body>
@@ -51,18 +52,17 @@
         </fieldset>
         <fieldset class="checkout-summary">
           <legend>Order Summary</legend>
-
           <div class="order__summary">
             <div>Items</div>
-            <div id="numberItems"></div>
+            <div id="numberItems">0</div>
             <div>Subtotal</div>
-            <div id="cartTotal"></div>
+            <div id="cartTotal">$0.00</div>
             <div>Shipping</div>
+            <div id="shipping">$0.00</div>
             <div>Tax</div>
-            <div id="tax"></div>
-            <div id="shipping"></div>
+            <div id="tax">$0.00</div>
             <div>Total</div>
-            <div id="total"></div>
+            <div id="total">$0.00</div>
           </div>
         </fieldset>
         <button type="submit" id="checkoutSubmit">Checkout</button>
