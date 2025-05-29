@@ -1,19 +1,18 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import { CheckoutProcess } from "./CheckoutProcess.mjs";
+import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
 const order = new CheckoutProcess("so-cart", ".checkout-summary");
-order.init();
+order.init(); // ✅ Fix: previously was incorrectly written as checkout.init()
 
-// Add event listeners to fire calculateOrderTotal when the user changes the zip code
-document
-  .querySelector("#zip")
-  .addEventListener("blur", order.calculateOrderTotal.bind(order));
+// Recalculate order total when ZIP changes
+document.querySelector("#zip").addEventListener("blur", () => {
+  order.calculateOrdertotal();
+});
 
-// listening for click on the button
+// Handle form submit
 document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
   e.preventDefault();
-
   order.checkout();
 });

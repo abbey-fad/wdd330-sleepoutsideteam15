@@ -10,29 +10,33 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
     </li>
-    `;
+  `;
 }
 
 export default class ProductList {
-  constructor(category, dataSource, listElement) {
-    this.category = category;
+  constructor(categoryOrQuery, dataSource, listElement) {
+    this.categoryOrQuery = categoryOrQuery;
     this.dataSource = dataSource;
     this.listElement = listElement;
   }
 
-  async init() {
-    const list = await this.dataSource.getData(this.category);
-    this.renderList(list);
-    document.querySelector(".title").textContent = this.category;
+  async init(isSearch = false) {
+    let list;
+    try {
+      if (isSearch) {
+        list = await this.dataSource.searchProducts(this.categoryOrQuery);
+        document.querySelector(".title").textContent = `"${this.categoryOrQuery}"`;
+      } else {
+        list = await this.dataSource.getData(this.categoryOrQuery);
+        document.querySelector(".title").textContent = this.categoryOrQuery;
+      }
+      this.renderList(list);
+    } catch (err) {
+      this.listElement.innerHTML = `<li>Unable to load products. Please try again later.</li>`;
+    }
   }
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
-    // apply use new utility function instead of the commented code above
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
   }
-
 }
