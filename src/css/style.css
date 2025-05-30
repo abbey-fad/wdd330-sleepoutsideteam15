@@ -60,6 +60,71 @@ p {
   color: var(--font-body);
 }
 
+/* Search Bar Container */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin: 1em auto;
+  max-width: 400px;
+}
+
+/* Search Input Field */
+.search-bar input[type="text"] {
+  flex: 1;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: 1px solid var(--light-grey);
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+/* Search bar wrapper */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Input field */
+#searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 50px 0 0 50px;
+}
+
+/* Search button */
+#searchBtn {
+  background: #2980b9;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+#searchBtn:hover {
+  background: #1f6390;
+}
+
+/* Search icon */
+#searchBtn img {
+  width: 20px;
+  height: 20px;
+}
+
 .hero {
   position: relative;
 }
@@ -136,8 +201,6 @@ button {
   fill: gray;
 }
 
-/* End cart icon styles */
-
 .mission {
   position: absolute;
   top: 1rem;
@@ -193,6 +256,36 @@ button {
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+}
+
+/* checkout styles */
+.checkout-form {
+  padding: 0.5em;
+}
+
+.checkout-form label {
+  display: block;
+}
+
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.checkout-summary>ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
 }
 
 /* Styles for product lists */
@@ -306,6 +399,47 @@ button {
   }
 }
 
+@media (max-width: 600px) {
+  .search-bar {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+
+  #searchInput,
+  #searchBtn {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  #searchBtn {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Alert message styles */
+.alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 2px solid #f5c6cb;
+  padding: 1em;
+  margin: 1em 0;
+  position: relative;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.alert-close {
+  background: none;
+  border: none;
+  color: #721c24;
+  font-weight: bold;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
 footer {
   font-size: var(--small-font);
   border-top: 1px solid var(--tertiary-color);
@@ -351,4 +485,19 @@ footer {
 .remove-btn:hover {
   color: #cc0000;
   transform: scale(1.2);
+}
+
+#checkout-message {
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #2e7d32;
+  /* green by default for success, can override in JS for error */
+}
+
+header .search-bar {
+  margin: 0;
+  max-width: 300px;
+  flex: 1 1 auto;
+  min-width: 200px;
 }
